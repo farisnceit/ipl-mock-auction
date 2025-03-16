@@ -4,7 +4,7 @@ export const siteConfig = {
   name: "IPL Auction 2025",
   description: "Interactive IPL auction simulation with AI-powered bidding, real-time updates, and modern UI. Experience the thrill of the IPL auction!",
   url: "https://ipl-mock-auction.netlify.app",
-  ogImage: "https://ipl-mock-auction.netlify.app/auction_live_2025.avif",
+  ogImage: "https://ipl-mock-auction.netlify.app/og-image.png",
   links: {
     //twitter: "https://twitter.com/iplauction",
     github: "https://github.com/farisnceit/ipl-mock-auction",
@@ -50,6 +50,7 @@ export const defaultMetadata: Metadata = {
         width: 1200,
         height: 630,
         alt: "IPL Auction 2025",
+        type: "image/png",
       },
     ],
   },
