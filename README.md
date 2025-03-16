@@ -2,7 +2,7 @@
 
 An interactive IPL auction simulation built with Next.js, TypeScript, and React. Experience the thrill of the IPL auction with realistic bidding mechanics, AI-powered team decisions, and a modern user interface.
 
-<img src="/auction_live_2025.avif" alt="IPL Auction 2025" title="IPL Auction 2025" width="800" height="auto">
+<img src="/og-image.png" alt="IPL Auction 2025" title="IPL Auction 2025" width="800" height="auto">
 
 ## Features
 
