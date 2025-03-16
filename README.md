@@ -1,4 +1,4 @@
-# IPL Auction 2024
+# IPL Auction 2025
 
 An interactive IPL auction simulation built with Next.js, TypeScript, and React. Experience the thrill of the IPL auction with realistic bidding mechanics, AI-powered team decisions, and a modern user interface.
 

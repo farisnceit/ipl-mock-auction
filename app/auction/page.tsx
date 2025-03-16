@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { AuctionState, Player, TeamState, BidState } from '@/lib/types';
 import players from '@/data/players.json';
@@ -27,7 +27,7 @@ import { Timer } from '@/components/timer';
 import { StatusBar } from '@/components/status-bar';
 import { CURRENCY, AUCTION_CONSTANTS } from '@/lib/constants';
 
-export default function AuctionPage() {
+function AuctionPageContent() {
   const searchParams = useSearchParams();
   const selectedTeamId = searchParams.get('team');
   
@@ -42,7 +42,12 @@ export default function AuctionPage() {
       selectedTeam: null,
       currentPlayer: null,
       teams: [],
-      availablePlayers: players,
+      availablePlayers: {
+        batsmen: [],
+        allRounders: [],
+        wicketKeepers: [],
+        bowlers: []
+      },
       bidState: null,
       auctionQueue: [],
       isPaused: false
@@ -155,23 +160,27 @@ export default function AuctionPage() {
     if (player.stats) {
       switch (player.role) {
         case 'batsmen':
-          value += (player.stats.average * 0.4 + player.stats.strikeRate * 0.3);
+          value += ((player.stats.average || 0) * 0.4 + (player.stats.strikeRate || 0) * 0.3);
           break;
         case 'bowlers':
-          value += ((300 - player.stats.economy) * 0.4 + player.stats.wickets * 0.3);
+          value += ((300 - (player.stats.economy || 0)) * 0.4 + (player.stats.wickets || 0) * 0.3);
           break;
         case 'allRounders':
-          value += (player.stats.average * 0.2 + player.stats.wickets * 0.2 + player.stats.strikeRate * 0.2);
+          value += (
+            (player.stats.average || 0) * 0.2 + 
+            (player.stats.wickets || 0) * 0.2 + 
+            (player.stats.strikeRate || 0) * 0.2
+          );
           break;
         case 'wicketKeepers':
-          value += (player.stats.average * 0.3 + player.stats.dismissals * 0.3);
+          value += ((player.stats.average || 0) * 0.3 + (player.stats.dismissals || 0) * 0.3);
           break;
       }
     }
 
     // Adjust value based on recent form and experience
-    if (player.stats?.matches > 50) value *= 1.2;
-    if (player.stats?.recentForm > 0.7) value *= 1.3;
+    if (player.stats?.matches && player.stats.matches > 50) value *= 1.2;
+    if (player.stats?.recentForm && player.stats.recentForm > 0.7) value *= 1.3;
 
     return value;
   };
@@ -191,8 +200,8 @@ export default function AuctionPage() {
       team,
       probability: calculateBidProbability(
         team,
-        auctionState.bidState.currentBid,
-        auctionState.currentPlayer
+        auctionState.bidState!.currentBid,
+        auctionState.currentPlayer!
       )
     }));
 
@@ -305,7 +314,12 @@ export default function AuctionPage() {
       selectedTeam: initialTeams.find(team => team.id === selectedTeamId) || null,
       currentPlayer: null,
       teams: initialTeams,
-      availablePlayers: players,
+      availablePlayers: {
+        batsmen: [],
+        allRounders: [],
+        wicketKeepers: [],
+        bowlers: []
+      },
       bidState: null,
       auctionQueue: queue,
       isPaused: false
@@ -316,7 +330,7 @@ export default function AuctionPage() {
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 text-gray-900 dark:text-white p-4 sm:p-6 md:p-8">
       <div className="container mx-auto">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6 sm:mb-8">
-          <h1 className="text-2xl sm:text-3xl font-bold">IPL Auction 2024</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold">IPL Auction 2025</h1>
           <div className="flex items-center gap-2">
             <ThemeToggle />
             <AlertDialog>
@@ -495,5 +509,24 @@ export default function AuctionPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function AuctionPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 text-gray-900 dark:text-white p-4 sm:p-6 md:p-8">
+        <div className="container mx-auto">
+          <div className="flex justify-center items-center h-[60vh]">
+            <div className="text-center">
+              <h2 className="text-2xl font-bold mb-4">Loading Auction...</h2>
+              <p className="text-gray-600 dark:text-gray-400">Please wait while we set up the auction.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    }>
+      <AuctionPageContent />
+    </Suspense>
   );
 }
