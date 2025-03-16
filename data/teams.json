@@ -1,0 +1,32 @@
+{
+  "teams": [
+    {
+      "id": "csk",
+      "name": "Chennai Super Kings",
+      "shortName": "CSK",
+      "color": "#FFD700",
+      "logo": "https://images.unsplash.com/photo-1631194758628-71ec7c35137e?auto=format&fit=crop&w=100&h=100"
+    },
+    {
+      "id": "mi",
+      "name": "Mumbai Indians",
+      "shortName": "MI",
+      "color": "#004BA0",
+      "logo": "https://images.unsplash.com/photo-1631194758628-71ec7c35137e?auto=format&fit=crop&w=100&h=100"
+    },
+    {
+      "id": "rcb",
+      "name": "Royal Challengers Bangalore",
+      "shortName": "RCB",
+      "color": "#EC1C24",
+      "logo": "https://images.unsplash.com/photo-1631194758628-71ec7c35137e?auto=format&fit=crop&w=100&h=100"
+    },
+    {
+      "id": "kkr",
+      "name": "Kolkata Knight Riders",
+      "shortName": "KKR",
+      "color": "#3A225D",
+      "logo": "https://images.unsplash.com/photo-1631194758628-71ec7c35137e?auto=format&fit=crop&w=100&h=100"
+    }
+  ]
+}

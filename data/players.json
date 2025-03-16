@@ -1,0 +1,77 @@
+{
+  "batsmen": [
+    {
+      "id": "b1",
+      "name": "Virat Kohli",
+      "role": "Batsman",
+      "basePrice": 20000000,
+      "country": "India",
+      "stats": {
+        "matches": 207,
+        "runs": 6624,
+        "average": 44.2,
+        "strikeRate": 129.8
+      }
+    },
+    {
+      "id": "b2",
+      "name": "David Warner",
+      "role": "Batsman",
+      "basePrice": 15000000,
+      "country": "Australia",
+      "stats": {
+        "matches": 162,
+        "runs": 5881,
+        "average": 42.01,
+        "strikeRate": 140.69
+      }
+    }
+  ],
+  "allRounders": [
+    {
+      "id": "a1",
+      "name": "Ben Stokes",
+      "role": "All-Rounder",
+      "basePrice": 16000000,
+      "country": "England",
+      "stats": {
+        "matches": 89,
+        "runs": 920,
+        "wickets": 28,
+        "average": 25.5,
+        "economy": 8.7
+      }
+    }
+  ],
+  "wicketKeepers": [
+    {
+      "id": "w1",
+      "name": "MS Dhoni",
+      "role": "Wicket-Keeper",
+      "basePrice": 15000000,
+      "country": "India",
+      "stats": {
+        "matches": 234,
+        "runs": 4876,
+        "average": 39.1,
+        "strikeRate": 135.2,
+        "dismissals": 123
+      }
+    }
+  ],
+  "bowlers": [
+    {
+      "id": "bo1",
+      "name": "Jasprit Bumrah",
+      "role": "Bowler",
+      "basePrice": 15000000,
+      "country": "India",
+      "stats": {
+        "matches": 120,
+        "wickets": 145,
+        "economy": 7.39,
+        "average": 23.31
+      }
+    }
+  ]
+}
